@@ -6,16 +6,22 @@ public:
 	vector<int> scores;
 
 	void play() {
-		p.numDice = diceAmount;
+		
 		
 		for (int i = 0; i < iterations; i++) {
+			p.numDice = diceAmount;
 			while (p.numDice != 0) {
 				p.rollDice();
 				score();
 			
 			}
 			scores.push_back(p.score); // Push all scores into one vector
+			p.score = 0;
+
+			cout << "ITERATION COMPLETE!" << endl;
 		}
+
+		calculateStats();
 	}
 	
 private:
@@ -44,6 +50,28 @@ private:
 
 		cout << "Total score " << p.score << endl;
 		p.d.clear();
+	}
+
+	void calculateStats() {
+		int counter = 0;
+
+
+		while (scores.size() != 0) {
+			for (int i = 0; i < scores.size(); i++) {
+				cout << scores[i] << " ";
+			}
+			int temp = scores.back();
+			for (int i = scores.size() - 1; i >= 0; i--) {
+				if (temp == scores[i]) {
+					scores.erase(scores.begin() + i);
+					counter++;
+				}
+			}
+			cout << "Count: " << counter << endl;
+			cout << "Scores: ";
+
+			counter = 0;
+		}
 	}
 
 };

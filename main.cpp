@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int diceAmount = 2;
+int diceAmount = 5;
 int iterations = 10;
 
 #include "game.h"
