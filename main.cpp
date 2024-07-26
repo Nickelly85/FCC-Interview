@@ -4,13 +4,13 @@
 
 using namespace std;
 
-#include "game.h"
-
 int diceAmount = 2;
 int iterations = 10;
+
+#include "game.h"
 
 int main() {
 	game g;
 
-
+	g.play();
 }

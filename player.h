@@ -20,7 +20,10 @@ public:
 
 			temp.value = dist6(rng);
 
+			cout << temp.value << " ";
+
 			d.push_back(temp);
 		}
+		cout << endl;
 	}
 };
