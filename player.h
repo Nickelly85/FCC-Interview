@@ -6,11 +6,13 @@ public:
 	int numDice;
 	int score;
 
+	// Constructor
 	player() {
 		numDice = 0;
 		score = 0;
 	}
 	
+	// Method to roll dice (Generates random number)
 	void rollDice() {
 		dice temp;
 		for (int i = 0; i < numDice; i++) {
