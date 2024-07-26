@@ -4,6 +4,7 @@ class game {
 public:
 	player p;
 	vector<int> scores;
+	map<int, pair<double, int>> m;
 
 	void play() {
 		
@@ -17,11 +18,10 @@ public:
 			}
 			scores.push_back(p.score); // Push all scores into one vector
 			p.score = 0;
-
-			cout << "ITERATION COMPLETE!" << endl;
 		}
 
 		calculateStats();
+		printStats();
 	}
 	
 private:
@@ -48,18 +48,15 @@ private:
 			p.numDice--;
 		}
 
-		cout << "Total score " << p.score << endl;
 		p.d.clear();
 	}
 
 	void calculateStats() {
-		int counter = 0;
-
+		double counter = 0;
+		double percent = 0;
+		
 
 		while (scores.size() != 0) {
-			for (int i = 0; i < scores.size(); i++) {
-				cout << scores[i] << " ";
-			}
 			int temp = scores.back();
 			for (int i = scores.size() - 1; i >= 0; i--) {
 				if (temp == scores[i]) {
@@ -67,10 +64,23 @@ private:
 					counter++;
 				}
 			}
-			cout << "Count: " << counter << endl;
-			cout << "Scores: ";
+
+			percent = counter / iterations;
+
+			m.insert(make_pair(temp, make_pair(percent, counter)));
 
 			counter = 0;
+		}
+	}
+
+	void printStats() {
+		cout << "Number of simulations was " << iterations << " using " << diceAmount << " dice." << endl;
+		for (int i = 0; i <= diceAmount * 6; i++) {
+			auto temp = m.find(i);
+
+			if (temp != m.end()) {
+				cout << "Total " << temp->first << " occurs " << temp->second.first << " occurred " << temp->second.second << " times." << endl;
+			}
 		}
 	}
 
