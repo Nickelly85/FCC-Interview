@@ -1,4 +1,5 @@
 class dice {
+public:
 	int value;
 
 	dice() {
